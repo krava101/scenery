@@ -15,131 +15,133 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="frame"></div>
-      <div class="second-frame"></div>
-      <div class="frame-shadow"></div>
-      <div class="middle-line"></div>
-      <div class="scenery-wrapper">
+      <div class="exp"></div>
+      <div class="outer-frame"></div>
+      <div class="inner-frame"></div>
+      <div class="outer-frame-shadow"></div>
+      <div class="middle-line">
         <div class="scenery-bg"></div>
-        <div class="scenery-mountains"></div>
-        <div class="sky"></div>
-        <div class="sun-moon"></div>
-      </div>
-      <div class="controller-box">
-        <div class="controller">
-          <div class="controller-btns">
-            <div class="switch">
-              <button class="switch-btn" type="button" data-switch="off">
-                <svg class="switch-btn-icon">
-                  <use href="./icons.svg#icon-power"></use>
-                </svg>
-              </button>
+        <div class="scenery-wrapper">
+          <div class="scenery-mountains"></div>
+          <div class="sky"></div>
+          <div class="sun-moon"></div>
+        </div>
+        <div class="controller-box">
+          <div class="controller">
+            <div class="controller-btns">
+              <div class="switch">
+                <button class="switch-btn" type="button" data-switch="off">
+                  <svg class="switch-btn-icon">
+                    <use href="./icons.svg#icon-power"></use>
+                  </svg>
+                </button>
+              </div>
+              <ul class="events-list">
+                <li class="events-item">
+                  <button class="events-btn" type="button" data-event="comet">
+                    <svg class="events-icon">
+                      <use href="./icons.svg#icon-comet"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="events-item">
+                  <button class="events-btn" type="button" data-event="deer">
+                    <svg class="events-icon">
+                      <use href="./icons.svg#icon-deer"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="events-item">
+                  <button class="events-btn" type="button" data-event="rocket">
+                    <svg class="events-icon">
+                      <use href="./icons.svg#icon-rocket"></use>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
             </div>
-            <ul class="events-list">
-              <li class="events-item">
-                <button class="events-btn" type="button" data-event="comet">
-                  <svg class="events-icon">
-                    <use href="./icons.svg#icon-comet"></use>
-                  </svg>
-                </button>
-              </li>
-              <li class="events-item">
-                <button class="events-btn" type="button" data-event="deer">
-                  <svg class="events-icon">
-                    <use href="./icons.svg#icon-deer"></use>
-                  </svg>
-                </button>
-              </li>
-              <li class="events-item">
-                <button class="events-btn" type="button" data-event="rocket">
-                  <svg class="events-icon">
-                    <use href="./icons.svg#icon-rocket"></use>
-                  </svg>
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div class="middle-controller">
-            <div class="circle-conroller">
-              <div class="weather-wrapper">
-                <ul class="weather-list">
-                  <li class="weather-item weather-1">
-                    <button
-                      class="weather-btn"
-                      type="button"
-                      data-weather="sun"
-                    >
-                      <svg class="weather-icon" id="weather-icon-1">
-                        <use href="./icons.svg#icon-sun"></use>
-                      </svg>
-                    </button>
-                  </li>
-                  <li class="weather-item weather-2">
-                    <button
-                      class="weather-btn"
-                      type="button"
-                      data-weather="sunrise"
-                    >
-                      <svg class="weather-icon" id="weather-icon-2">
-                        <use href="./icons.svg#icon-sunrise"></use>
-                      </svg>
-                    </button>
-                  </li>
-                  <li class="weather-item weather-3">
-                    <button
-                      class="weather-btn"
-                      type="button"
-                      data-weather="moon"
-                    >
-                      <svg class="weather-icon" id="weather-icon-3">
-                        <use href="./icons.svg#icon-moon"></use>
-                      </svg>
-                    </button>
-                  </li>
-                  <li class="weather-item weather-4">
-                    <button
-                      class="weather-btn"
-                      type="button"
-                      data-weather="cloud"
-                    >
-                      <svg class="weather-icon" id="weather-icon-4">
-                        <use href="./icons.svg#icon-cloud"></use>
-                      </svg>
-                    </button>
-                  </li>
-                  <li class="weather-item weather-5">
-                    <button
-                      class="weather-btn"
-                      type="button"
-                      data-weather="snow"
-                    >
-                      <svg class="weather-icon" id="weather-icon-5">
-                        <use href="./icons.svg#icon-snow"></use>
-                      </svg>
-                    </button>
-                  </li>
-                  <li class="weather-item weather-6">
-                    <button
-                      class="weather-btn"
-                      type="button"
-                      data-weather="rain"
-                    >
-                      <svg class="weather-icon" id="weather-icon-6">
-                        <use href="./icons.svg#icon-rain"></use>
-                      </svg>
-                    </button>
-                  </li>
-                </ul>
+            <div class="middle-controller">
+              <div class="circle-conroller">
+                <div class="weather-wrapper">
+                  <ul class="weather-list">
+                    <li class="weather-item">
+                      <button
+                        class="weather-btn weather-1"
+                        type="button"
+                        data-weather="sun"
+                      >
+                        <svg class="weather-icon" id="weather-icon-1">
+                          <use href="./icons.svg#icon-sun"></use>
+                        </svg>
+                      </button>
+                    </li>
+                    <li class="weather-item">
+                      <button
+                        class="weather-btn weather-2"
+                        type="button"
+                        data-weather="sunrise"
+                      >
+                        <svg class="weather-icon" id="weather-icon-2">
+                          <use href="./icons.svg#icon-sunrise"></use>
+                        </svg>
+                      </button>
+                    </li>
+                    <li class="weather-item">
+                      <button
+                        class="weather-btn weather-3"
+                        type="button"
+                        data-weather="moon"
+                      >
+                        <svg class="weather-icon" id="weather-icon-3">
+                          <use href="./icons.svg#icon-moon"></use>
+                        </svg>
+                      </button>
+                    </li>
+                    <li class="weather-item">
+                      <button
+                        class="weather-btn weather-4"
+                        type="button"
+                        data-weather="cloud"
+                      >
+                        <svg class="weather-icon" id="weather-icon-4">
+                          <use href="./icons.svg#icon-cloud"></use>
+                        </svg>
+                      </button>
+                    </li>
+                    <li class="weather-item">
+                      <button
+                        class="weather-btn weather-5"
+                        type="button"
+                        data-weather="snow"
+                      >
+                        <svg class="weather-icon" id="weather-icon-5">
+                          <use href="./icons.svg#icon-snow"></use>
+                        </svg>
+                      </button>
+                    </li>
+                    <li class="weather-item">
+                      <button
+                        class="weather-btn weather-6"
+                        type="button"
+                        data-weather="rain"
+                      >
+                        <svg class="weather-icon" id="weather-icon-6">
+                          <use href="./icons.svg#icon-rain"></use>
+                        </svg>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="thermometr">
-          <h3 class="thermometr-title">Temperature</h3>
-          <p class="temperature"></p>
-          <div class="thermometr-btns-wrapper">
-            <button class="thermometr-btn-cel" type="button">°F</button>
-            <button class="thermometr-btn-far" type="button">°C</button>
+          <div class="thermometr">
+            <h3 class="thermometr-title">Temperature</h3>
+            <p class="temperature"></p>
+            <div class="thermometr-btns-wrapper">
+              <button class="thermometr-btn-cel" type="button">°F</button>
+              <button class="thermometr-btn-far" type="button">°C</button>
+            </div>
           </div>
         </div>
       </div>
