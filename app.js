@@ -3,6 +3,7 @@ const sceneryBg = document.querySelector(".scenery-bg");
 const temperatureText = document.querySelector(".temperature");
 const weather = document.querySelector(".weather-wrapper");
 const sky = document.querySelector(".sky");
+const cloudySky = document.querySelector(".cloudy-sky");
 const sunMoon = document.querySelector(".sun-moon");
 
 
@@ -26,25 +27,39 @@ function changeSwitchBtn(b) {
 
 
 function weatherControl(x) {
+    sunMoon.classList.remove("sun", "sunrise", "moon");
+    sky.classList.remove("morning-sky", "night-sky", "cloudy-sky");
+    cloudySky.style.transform = "translateY(-100%)";
+    sceneryBg.style.opacity = "0";
     switch (x) {
         case "sun":
             weather.style.transform = "rotate(0deg)";
-            sky.style.backgroundColor = ""
+            sunMoon.classList.add("sun");
             break;
         case "sunrise":
             weather.style.transform = "rotate(-60deg)";
+            sky.classList.add("morning-sky")
+            sunMoon.classList.add("sunrise");
             break;
         case "moon":
             weather.style.transform = "rotate(-120deg)";
+            sky.classList.add("night-sky");
+            sunMoon.classList.add("moon");
             break;
         case "cloud":
             weather.style.transform = "rotate(-180deg)";
+            cloudySky.style.transform = "translateY(0%)"; 
+            sceneryBg.style.opacity = "0.1";
             break;
         case "snow":
             weather.style.transform = "rotate(-240deg)";
+            cloudySky.style.transform = "translateY(0%)"; 
+            sceneryBg.style.opacity = "0.1";
             break;
         case "rain":
             weather.style.transform = "rotate(-300deg)";
+            cloudySky.style.transform = "translateY(0%)"; 
+            sceneryBg.style.opacity = "0.1";
             break;
     }
 }
@@ -64,9 +79,7 @@ switchBtn.addEventListener("click", event => {
     }
     
     weather.addEventListener("click", event => {
-        if (event.target.nodeName !== "BUTTON") {
-            return
-        } else {
+        if (event.target.nodeName !== "BUTTON") {return} else {
             weatherControl(event.target.dataset.weather);
         }
     }) 

@@ -372,20 +372,52 @@ ul{
     height: 100%;
     background-image: url('./imgs/mountains2.png'), url('./imgs/mountains.png');
     background-size: 460px 220px;
-    z-index: 80;
+    z-index: 81;
 }
 
 .sun-moon{
     position: absolute;
     top: 20px;
     left: 45%;
-    transform: translateX(-50%);
+    transform: translate(-50% , 0%);
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #e8d67a;
-    box-shadow: 0px 0px 20px #e8d67a;
+    background-color: rgb(232, 214, 122);
+    box-shadow: 0px 0px 20px rgb(232, 214, 122);
     z-index: 79;
+    transition: transform .3s ease-in-out, background-color .3s ease-in-out;
+}
+
+.sun{
+    transform: translate(-50%, 0%);
+    background-color: rgb(232, 214, 122);
+}
+
+.sunrise{
+    transform: translate(-50% , 150%);
+    background-color: rgb(232, 186, 122);
+}
+
+.moon{
+    background-color: rgb(248, 246, 233);
+    box-shadow: none;
+    transform: translate(-50% , 0%);
+}
+
+.moon::after{
+    position: absolute;
+    top: 0;
+    left: 25%;
+    content: '';
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(21, 24, 56);
+    background-image: linear-gradient(to top, #fff, #fff);
+    background-repeat: no-repeat;
+    background-size: 1px 1px;
+    background-position: 20px 28px;
 }
 
 .sky{
@@ -393,8 +425,63 @@ ul{
     top: 0;
     width: 100%;
     height: 99%;
-    background-color:  rgb(166, 202, 212);
+    background-color: rgb(166, 202, 212);
     z-index: 78;
+    transition: all .3s ease-in-out;
+    opacity: 1;
+}
+
+.morning-sky{
+    background-color: rgb(249, 150, 114);
+}
+
+.night-sky{
+    background-color: rgb(21, 24, 56);
+}
+
+.night-sky::after{
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: 
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #f9e8b2, #f4dfa8),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #f9e8b2, #f4dfa8),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #ead48c, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff),
+    linear-gradient(to top, #fff, #fff);
+    background-size: 1px 1px, 2px 2px, 1px 1px, 1px 1px,
+        1px 1px, 1px 1px,1px 1px, 1px 1px, 2px 2px, 1px 1px,
+        2px 2px, 1px 1px, 1px 1px, 2px 2px, 1px 1px;
+    background-repeat: no-repeat;
+    background-position: 150px 50px, 240px 20px, 254px 55px, 120px 70px,
+        255px 22px, 270px 31px, 280px 34px, 314px 39px, 282px 54px,
+        308px 59px, 190px 120px, 170px 90px, 170px 20px, 100px 50px, 210px 100px;
+    z-index: 79;
+}
+
+.cloudy-sky{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:url("./imgs/cloud.png"), url("./imgs/cloud.png"), url("./imgs/cloud.png"), url("./imgs/cloud.png");
+    background-repeat: no-repeat;
+    background-position:50px 40px, 80px 20px, 210px 30px, 250px 10px;
+    background-size: 120px, 80px, 100px;
+    transform: translateY(-100%);
+    transition: transform .4s ease-in-out;
+    z-index: 80;
 }
 
 
