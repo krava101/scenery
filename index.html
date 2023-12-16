@@ -15,7 +15,6 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="exp"></div>
       <div class="outer-frame"></div>
       <div class="inner-frame"></div>
       <div class="outer-frame-shadow"></div>
@@ -24,8 +23,43 @@
         <div class="scenery-wrapper">
           <div class="scenery-mountains"></div>
           <div class="sky"></div>
+          <div class="santa-event">
+            <div class="santa-sleigh">
+              <img
+                class="santa"
+                style="--el: 5"
+                src="./imgs/santa.png"
+                alt="Santa Claus"
+              />
+              <img
+                class="deer"
+                style="--el: 4"
+                src="./imgs/deer.png"
+                alt="Santa's deer Comet"
+              />
+              <img
+                class="deer"
+                style="--el: 3"
+                src="./imgs/deer.png"
+                alt="Santa's deer Cupid"
+              />
+              <img
+                class="deer"
+                style="--el: 2"
+                src="./imgs/deer.png"
+                alt="Santa's deer Prancer"
+              />
+              <img
+                class="deer"
+                style="--el: 1"
+                src="./imgs/deer.png"
+                alt="Santa's deer Vixen"
+              />
+            </div>
+          </div>
           <div class="cloudy-sky"></div>
-          <div class="sun-moon"></div>
+          <div class="sun"></div>
+          <div class="moon"></div>
         </div>
         <div class="controller-box">
           <div class="controller">
@@ -46,7 +80,7 @@
                   </button>
                 </li>
                 <li class="events-item">
-                  <button class="events-btn" type="button" data-event="deer">
+                  <button class="events-btn" type="button" data-event="santa">
                     <svg class="events-icon">
                       <use href="./icons.svg#icon-deer"></use>
                     </svg>
@@ -151,6 +185,7 @@
         </div>
       </div>
     </div>
+    <!-- <script src="./debounce.js"></script> -->
     <script type="module" src="./app.js"></script>
   </body>
 </html>

@@ -376,7 +376,7 @@ ul{
     z-index: 81;
 }
 
-.sun-moon{
+.sun{
     position: absolute;
     top: 20px;
     left: 45%;
@@ -387,10 +387,10 @@ ul{
     background-color: rgb(232, 214, 122);
     box-shadow: 0px 0px 20px rgb(232, 214, 122);
     z-index: 79;
-    transition: transform .3s ease-in-out, background-color .3s ease-in-out;
+    transition: transform .8s ease-in-out, background-color .8s ease-in-out;
 }
 
-.sun{
+.sun-day{
     transform: translate(-50%, 0%);
     background-color: rgb(232, 214, 122);
 }
@@ -400,26 +400,29 @@ ul{
     background-color: rgb(232, 186, 122);
 }
 
-.moon{
-    background-color: rgb(248, 246, 233);
-    box-shadow: none;
-    transform: translate(-50% , 0%);
+.sun-night{
+    transform: translate(-50%, 110px);
+    background-color: rgb(232, 166, 122);
 }
 
-.moon::after{
+.moon{
     position: absolute;
-    top: 0;
-    left: 25%;
-    content: '';
+    top: 20px;
+    left: 45%;
+    transform: translate(-50%, -110px);
     width: 50px;
     height: 50px;
+    background-color: transparent;
     border-radius: 50%;
-    background-color: rgb(21, 24, 56);
-    background-image: linear-gradient(to top, #fff, #fff);
-    background-repeat: no-repeat;
-    background-size: 1px 1px;
-    background-position: 20px 28px;
+    z-index: 79;
+    box-shadow: inset 10px 0px 2px 0px #fff, -2px 0px 1.3px 0px #fff;
+    transition: transform .8s ease-in-out;
 }
+
+.moon-at-night{
+    transform: translate(-50%, 0px);
+}
+
 
 .sky{
     position: absolute;
@@ -428,7 +431,7 @@ ul{
     height: 99%;
     background-color: rgb(166, 202, 212);
     z-index: 78;
-    transition: all .3s ease-in-out;
+    transition: all .8s ease-in-out;
     opacity: 1;
 }
 
@@ -481,7 +484,7 @@ ul{
     background-position:50px 40px, 80px 20px, 210px 30px, 250px 10px;
     background-size: 120px, 80px, 100px;
     transform: translateY(-100%);
-    transition: transform .4s ease-in-out;
+    transition: transform .8s ease-in-out;
     z-index: 80;
 }
 
@@ -592,4 +595,78 @@ ul{
 
 #weather-icon-6{
     transform: rotate(300deg);
+}
+
+/* Events */
+.santa-event{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 81;
+}
+
+.santa-sleigh{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    left: 18px;
+    top: 70px;
+}
+
+.santa{
+    width: 10px;
+}
+
+.deer{
+    width: 7px;
+}
+
+.santa-flying{
+    animation: santaSleighMove 10s linear;
+}
+
+.santa-flying img{
+    animation: santaFlying 2s linear infinite;
+    animation-delay: calc(var(--el) * 0.3s);
+}
+
+@keyframes santaSleighMove {
+    0%{
+        transform: translate(0);
+    }
+
+    100%{
+        transform: translate(500px);
+    }
+}
+
+@keyframes santaFlying{
+    0%{
+        transform: translateY(0px);
+    }
+    12%{
+        transform: translateY(-1px);
+    }
+    25% {
+        transform: translateY(-2px);
+    }
+    38%{
+        transform: translateY(-1px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    62%{
+        transform: translateY(1px);
+    }
+    75% {
+        transform: translateY(2px);
+    }
+    88% {
+        transform: translateY(1px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }

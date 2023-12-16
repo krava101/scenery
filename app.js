@@ -5,11 +5,21 @@ const weather = document.querySelector(".weather-wrapper");
 const thermometr = document.querySelector(".thermometr");
 const sky = document.querySelector(".sky");
 const cloudySky = document.querySelector(".cloudy-sky");
-const sunMoon = document.querySelector(".sun-moon");
+const sun = document.querySelector(".sun");
+const moon = document.querySelector(".moon");
 const celBtn = document.querySelector(".thermometr-btn-cel");
 const fahBtn = document.querySelector(".thermometr-btn-far");
+const eventsList = document.querySelector(".events-list");
+const santa = document.querySelector(".santa-sleigh");
 
 
+const debounce = (f,t) => {
+    let tout;
+    return () => {
+        clearTimeout(tout);
+        tout = setTimeout(f,t);
+    };
+}
 
 function changeSwitchBtn(b) {
     const eventIcons = document.querySelectorAll(".events-icon");
@@ -58,26 +68,28 @@ function changeDegree(x) {
 
 
 function weatherControl(x) {
-    sunMoon.classList.remove("sun", "sunrise", "moon");
+    moon.classList.remove("moon-at-night");
+    sun.classList.remove("sun-day", "sunrise", "sun-night");
     sky.classList.remove("morning-sky", "night-sky", "cloudy-sky");
     cloudySky.style.transform = "translateY(-100%)";
     sceneryBg.style.opacity = "0";
     switch (x) {
         case "sun":
             weather.style.transform = "rotate(0deg)";
-            sunMoon.classList.add("sun");
+            sun.classList.add("sun-day");
             changeDegree(-10);
             break;
         case "sunrise":
             weather.style.transform = "rotate(-60deg)";
             sky.classList.add("morning-sky")
-            sunMoon.classList.add("sunrise");
+            sun.classList.add("sunrise");
             changeDegree(-12);
             break;
         case "moon":
             weather.style.transform = "rotate(-120deg)";
             sky.classList.add("night-sky");
-            sunMoon.classList.add("moon");
+            sun.classList.add("sun-night");
+            moon.classList.add("moon-at-night");
             changeDegree(-15);
             break;
         case "cloud":
@@ -101,8 +113,7 @@ function weatherControl(x) {
     }
 }
 
-
-function switchBtnClick(){
+function switchBtnClick() {
     function weatherClick(event) {
         if (event.target.nodeName !== "BUTTON") { return } else {
             weatherControl(event.target.dataset.weather);
@@ -112,6 +123,14 @@ function switchBtnClick(){
     if (switchBtn.getAttribute("data-switch") === "off") {
         changeSwitchBtn(true);
         weather.addEventListener("click", weatherClick);
+        eventsList.addEventListener("click", event => {
+            if (event.target.dataset.event = "santa") {
+                santa.classList.add("santa-flying");
+                debounce(() => {
+                    santa.classList.remove("santa-flying");
+                }, 10000)()
+            }
+        })
     } else if (switchBtn.getAttribute("data-switch") === "on") {
         changeSwitchBtn(false);
         weather.removeEventListener("click", weatherClick);
