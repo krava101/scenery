@@ -2,6 +2,7 @@ const switchBtn = document.querySelector(".switch-btn");
 const sceneryBg = document.querySelector(".scenery-bg");
 const temperatureText = document.querySelector(".temperature");
 const weather = document.querySelector(".weather-wrapper");
+const loader = document.querySelector(".loader");
 const thermometr = document.querySelector(".thermometr");
 const sky = document.querySelector(".sky");
 const cloudySky = document.querySelector(".cloudy-sky");
@@ -66,26 +67,32 @@ function changeDegree(x) {
     celBtn.getAttribute("data-c") === "on" ? toCel(x) : toFah(x);
 }
 
-
-function weatherControl(x) {
+function resetWeather(){
     moon.classList.remove("moon-at-night");
     sun.classList.remove("sun-day", "sunrise", "sun-night");
     sky.classList.remove("morning-sky", "night-sky", "cloudy-sky");
     cloudySky.style.transform = "translateY(-100%)";
     sceneryBg.style.opacity = "0";
+}
+
+
+function weatherControl(x) {
     switch (x) {
         case "sun":
+            resetWeather();
             weather.style.transform = "rotate(0deg)";
             sun.classList.add("sun-day");
             changeDegree(-10);
             break;
         case "sunrise":
+            resetWeather();
             weather.style.transform = "rotate(-60deg)";
             sky.classList.add("morning-sky")
             sun.classList.add("sunrise");
             changeDegree(-12);
             break;
         case "moon":
+            resetWeather();
             weather.style.transform = "rotate(-120deg)";
             sky.classList.add("night-sky");
             sun.classList.add("sun-night");
@@ -116,7 +123,9 @@ function weatherControl(x) {
 function switchBtnClick() {
     function weatherClick(event) {
         if (event.target.nodeName !== "BUTTON") { return } else {
+            loader.classList.add("loader-active");
             weatherControl(event.target.dataset.weather);
+            debounce(()=>{loader.classList.remove("loader-active");}, 900)()
         }
     }
     
