@@ -8,6 +8,7 @@ const sky = document.querySelector(".sky");
 const cloudySky = document.querySelector(".cloudy-sky");
 const sun = document.querySelector(".sun");
 const moon = document.querySelector(".moon");
+const snow = document.querySelector(".snow");
 const aurora = document.querySelector(".aurora");
 const celBtn = document.querySelector(".thermometr-btn-cel");
 const fahBtn = document.querySelector(".thermometr-btn-far");
@@ -22,6 +23,23 @@ const debounce = (f,t) => {
         clearTimeout(tout);
         tout = setTimeout(f,t);
     };
+}
+
+function createSnow() {
+  const snowFlake = document.createElement("div")
+  snowFlake.classList.add("snow-flake");
+  snow.appendChild(snowFlake);
+  const start = Math.random() * 460;
+  const duration = Math.random() * 3 + 2;
+  const width = (Math.random() * 5) + 1;
+  
+  snowFlake.style.width = `${width}px`;
+  snowFlake.style.height = `${width}px`;
+  snowFlake.style.left = `${start}px`;
+  snowFlake.style.animationDuration = `${duration}s`;
+  debounce(() => {
+    snowFlake.remove();
+  }, duration*2000)();
 }
 
 function randomComet() {
@@ -121,6 +139,10 @@ const weatherControl = x => {
             changeDegree(-10);
             break;
         case "snow":
+            const snowInterval = setInterval(createSnow, 100);
+            debounce(() => {
+              clearInterval(snowInterval);
+            }, 20000)();
             weather.style.transform = "rotate(-240deg)";
             cloudySky.style.transform = "translateY(0%)"; 
             sceneryBg.style.opacity = "0.1";
@@ -128,7 +150,6 @@ const weatherControl = x => {
             break;
         case "aurora":
             resetWeather();
-
             weather.style.transform = "rotate(-300deg)"; 
             sky.classList.add("night-sky");
             sun.classList.add("sun-night");
