@@ -8,11 +8,13 @@ const sky = document.querySelector(".sky");
 const cloudySky = document.querySelector(".cloudy-sky");
 const sun = document.querySelector(".sun");
 const moon = document.querySelector(".moon");
+const aurora = document.querySelector(".aurora");
 const celBtn = document.querySelector(".thermometr-btn-cel");
 const fahBtn = document.querySelector(".thermometr-btn-far");
 const eventsList = document.querySelector(".events-list");
+const cometEvent = document.querySelector(".comet-event");
 const santa = document.querySelector(".santa-sleigh");
-
+const rocket = document.querySelector(".rocket");
 
 const debounce = (f,t) => {
     let tout;
@@ -20,6 +22,18 @@ const debounce = (f,t) => {
         clearTimeout(tout);
         tout = setTimeout(f,t);
     };
+}
+
+function randomComet() {
+  let cometWidth = ~((0.2 + Math.random()) * -5);
+  if (cometWidth < 2) cometWidth = 2;
+  const cometPosition = ~(Math.random()*-200);
+
+  document.documentElement.style.setProperty('--comet-width', `${cometWidth}px`);
+  document.documentElement.style.setProperty('--comet-position', `${cometPosition}px`);
+
+  const newComet = `<div class="comet"></div>`;
+  cometEvent.insertAdjacentHTML('beforeend', newComet);
 }
 
 function changeSwitchBtn(b) {
@@ -71,12 +85,13 @@ function resetWeather(){
     moon.classList.remove("moon-at-night");
     sun.classList.remove("sun-day", "sunrise", "sun-night");
     sky.classList.remove("morning-sky", "night-sky", "cloudy-sky");
+    aurora.classList.remove("aurora-active");
     cloudySky.style.transform = "translateY(-100%)";
     sceneryBg.style.opacity = "0";
 }
 
 
-function weatherControl(x) {
+const weatherControl = x => {
     switch (x) {
         case "sun":
             resetWeather();
@@ -111,40 +126,85 @@ function weatherControl(x) {
             sceneryBg.style.opacity = "0.1";
             changeDegree(-5);
             break;
-        case "rain":
-            weather.style.transform = "rotate(-300deg)";
-            cloudySky.style.transform = "translateY(0%)"; 
-            sceneryBg.style.opacity = "0.1";
-            changeDegree(0);
+        case "aurora":
+            resetWeather();
+
+            weather.style.transform = "rotate(-300deg)"; 
+            sky.classList.add("night-sky");
+            sun.classList.add("sun-night");
+            moon.classList.add("moon-at-night");
+            aurora.classList.add("aurora-active");
+            changeDegree(-2);
             break;
     }
 }
 
-function switchBtnClick() {
-    function weatherClick(event) {
-        if (event.target.nodeName !== "BUTTON") { return } else {
-            loader.classList.add("loader-active");
-            weatherControl(event.target.dataset.weather);
-            debounce(()=>{loader.classList.remove("loader-active");}, 900)()
-        }
+let santaCount = 0;
+let rocketCount = 0;
+
+const eventsListClick = event => {
+  event.target.style.pointerEvents = "none";
+  switch (event.target.dataset.event) {
+    case "santa":
+      if (santaCount > 2) {
+        alert("The deer are tired, try again later!");
+        debounce(() => {
+          santaCount = 0;
+        }, 20000)();
+      }
+      else {
+        santa.classList.add("santa-flying");
+      }
+      debounce(() => {
+        santa.classList.remove("santa-flying");
+        santaCount++;
+        event.target.style.pointerEvents = "all";
+        }, 7000)();
+      break;
+    case "rocket":
+      if (rocketCount > 1) {
+        alert("The rocket is not ready, try again later!");
+        debounce(() => {
+          rocketCount = 0;
+        }, 30000)();
+      }
+      else {
+        rocket.classList.add("rocket-flying");
+      }
+      debounce(() => {
+        rocket.classList.remove("rocket-flying");
+        rocketCount++;
+        event.target.style.pointerEvents = "all";
+        }, 6000)();
+      break;
+    case "comet":
+      randomComet();
+      debounce(() => {
+        event.target.style.pointerEvents = "all";
+        cometEvent.textContent = "";
+        }, 2000)();
+      break;
+  }
+}
+
+const weatherClick = event => {
+    if (event.target.nodeName !== "BUTTON") { return } else {
+        loader.classList.add("loader-active");
+        weatherControl(event.target.dataset.weather);
+        debounce(()=>{loader.classList.remove("loader-active");}, 900)()
     }
-    
+}
+
+const switchBtnClick = () => {
     if (switchBtn.getAttribute("data-switch") === "off") {
         changeSwitchBtn(true);
         weather.addEventListener("click", weatherClick);
-        eventsList.addEventListener("click", event => {
-            if (event.target.dataset.event = "santa") {
-                santa.classList.add("santa-flying");
-                debounce(() => {
-                    santa.classList.remove("santa-flying");
-                }, 10000)()
-            }
-        })
+        eventsList.addEventListener("click", eventsListClick)
     } else if (switchBtn.getAttribute("data-switch") === "on") {
         changeSwitchBtn(false);
         weather.removeEventListener("click", weatherClick);
     } 
 }
 
-switchBtn.addEventListener("click", switchBtnClick)
+switchBtn.addEventListener("click", switchBtnClick);
 
